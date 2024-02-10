@@ -21,7 +21,7 @@ export default function About() {
       }}
     >
       <Typography variant="h5" gutterBottom>
-        About me
+        About
       </Typography>
       <Typography variant="body1" gutterBottom>
         <TbPointFilled /> I'm Self-taught React.js Developer.

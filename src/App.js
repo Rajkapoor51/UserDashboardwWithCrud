@@ -7,9 +7,10 @@ import Blogs from "./components/Blogs";
 import BlogsId from "./components/BlogsId";
 import Home from "./components/Home";
 import Login from "./components/Login";
-import PrivateRoute from "./components/PrivateRoute";
 import Error from "./components/Error";
 import { createBrowserRouter, Outlet } from "react-router-dom";
+import Products from "./components/Products";
+import AddProducts from "./components/AddProducts";
 
 export const App = () => {
   return (
@@ -30,9 +31,25 @@ export const appRouter = createBrowserRouter([
       {
         path: "/",
         element: (
-          <PrivateRoute>
             <Home />
-          </PrivateRoute>
+        ),
+      },
+      {
+        path: "home",
+        element: (
+            <Home />
+        ),
+      },
+      {
+        path: "products",
+        element: (
+            <Products />
+        ),
+      },
+      {
+        path: "add-product",
+        element: (
+            <AddProducts />
         ),
       },
       {
@@ -42,25 +59,19 @@ export const appRouter = createBrowserRouter([
       {
         path: "user",
         element: (
-          <PrivateRoute>
             <User />
-          </PrivateRoute>
         ),
       },
       {
         path: "blogs",
         element: (
-          <PrivateRoute>
             <Blogs />
-          </PrivateRoute>
         ),
       },
       {
         path: "blogs/:id",
         element: (
-          <PrivateRoute>
             <BlogsId />
-          </PrivateRoute>
         ),
       },
     ],

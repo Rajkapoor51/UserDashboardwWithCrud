@@ -1,20 +1,20 @@
-import './App.css'
-import React,{useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { signInWithPopup } from "firebase/auth";
 import { auth, provider } from "./Config/Config";
 import GoogleButton from 'react-google-button';
 import { getDatabase, ref, onValue, push, set } from "firebase/database";
 import { useNavigate } from "react-router-dom";
 
-function Login() {
+function SignIn() {
     const db = getDatabase();
     const navigate = useNavigate();
-    const [isDataSaved, setIsDataSaved] = useState(false);   useEffect(() => {
-      if (isDataSaved) {
-          navigate("/");
-      }
-      }, [isDataSaved, navigate]);
+    const [isDataSaved, setIsDataSaved] = useState(false);
 
+    useEffect(() => {
+        if (isDataSaved) {
+            navigate("/");
+        }
+    }, [isDataSaved, navigate]);
 
     const handleClick = () => {
         signInWithPopup(auth, provider).then((result) => {
@@ -25,9 +25,6 @@ function Login() {
                 if (userData) {
                     const userEmails = Object.values(userData).map(user => user.email);
                     if (userEmails.includes(user.email)) {
-                        localStorage.setItem('email',user.email);
-                        localStorage.setItem('name',user.displayName)
-                        localStorage.setItem('photo',user.photoURL)                      
                         console.log('Email already exists');
                         setIsDataSaved(true);
                     } else {
@@ -56,14 +53,10 @@ function Login() {
     };
 
     return (
-      
-        <div className="loginbtn">
-        
-          <h1>Login with Google</h1>
+        <div>
             <GoogleButton type="light" onClick={handleClick}></GoogleButton>
         </div>
-        
     );
 }
 
-export default Login;
+export default SignIn;

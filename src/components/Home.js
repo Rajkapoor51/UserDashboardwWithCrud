@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { useTheme } from "@mui/material/styles";
 
-export default function Home() {
+const Home = () => {
   const theme = useTheme();
   return (
     <Box
@@ -45,7 +45,7 @@ export default function Home() {
         }}
         gutterBottom
       >
-        User Dashboard Panel
+        User Dashboard
       </Typography>
       <Typography
         variant="h5"
@@ -63,4 +63,6 @@ export default function Home() {
       </Typography>
     </Box>
   );
-}
+};
+
+export default Home;

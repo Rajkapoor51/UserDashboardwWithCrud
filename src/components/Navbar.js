@@ -4,23 +4,25 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import IconButton from "@mui/material/IconButton";
+// import IconButton from "@mui/material/IconButton";
 import { Link, useNavigate } from "react-router-dom";
 import { useTheme } from "@mui/material/styles";
+import Avatar from '@mui/material/Avatar';
 
-export default function Navbar() {
-  const getEmail = localStorage.getItem("emailData");
-  const getPassword = localStorage.getItem("passwordData");
+function Navbar() {
+  const getEmail = localStorage.getItem("email");
+  const getPhoto = localStorage.getItem("photo");
+
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
   const theme = useTheme();
   useEffect(() => {
-    if (!getEmail && !getPassword) {
+    if (!getEmail) {
       setIsLoggedIn(false);
     } else {
       setIsLoggedIn(true);
     }
-  }, [getEmail, getPassword]);
+  }, [getEmail]);
 
   const handleClick = () => {
     setIsLoggedIn(false);
@@ -57,7 +59,7 @@ export default function Navbar() {
                 },
               }}
             >
-              Dashboard Panel
+              Dashboard
             </Typography>
           </Link>
         </Toolbar>
@@ -65,9 +67,10 @@ export default function Navbar() {
           sx={{
             mr: -3,
           }}
-        >
+          >
           <Link to="/user">
-            <IconButton title="User">
+           <Avatar alt="Remy Sharp" src={getPhoto} />
+            {/* <IconButton title="User">
               <AccountCircleIcon
                 sx={{
                   color: "#e6f0ff",
@@ -82,8 +85,8 @@ export default function Navbar() {
                     fontSize: 25,
                   },
                 }}
-              />
-            </IconButton>
+              /> */}
+            {/* </IconButton> */}
           </Link>
           {isLoggedIn ? (
             <Button
@@ -124,3 +127,7 @@ export default function Navbar() {
     </AppBar>
   );
 }
+
+
+export default Navbar;
+
